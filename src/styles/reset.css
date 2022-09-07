@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+:root {
+    /* COLORS */
+    --brand-1: #9604C5;
+    --brand-2: #710393;
+    --grey-0: #0A0C0D;
+    --grey-1: #212529;
+    --grey-2: #495057;
+    --grey-3: #868E96;
+    --grey-4: #DEE2E6;
+    --grey-5: #F0F2F5;
+    --grey-opacity-1: #21252980;
+    --white: #FFFFFF;
+
+    /* TYPOGRAPHY */
+    --font-size-title-1: 28px;
+    --font-size-title-2: 20px;
+    --font-size-text-1: 16px;
+    --font-size-text-2: 14px;
+    --font-size-text-3: 12px;
+
+    --font-weight-title-1: 700;
+    --font-weight-title-2: 600;
+    --font-weight-text-1: 400;
+    --font-weight-text-2: 400;
+    --font-weight-text-3: 400;
+
+    /* BUTTONS AND INPUTS */
+    --radius-modal: 8px;
+    --radius: 4px;
+    --radius-small: 2px;
+
+    --input-heigth: 48px;
+    --input-padding-left: 20px;
+
+    --button-heigth: 38px;
+}

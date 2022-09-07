@@ -1,0 +1,71 @@
+body {
+    background-color: var(--grey-5);
+}
+
+header {
+    height: 70px;
+    background-color: var(--grey-1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+}
+
+header h2 {
+    color: var(--brand-1);
+    font-weight: 500;
+    font-size: 22px;
+    cursor: default;
+}
+
+header nav ul {
+    display: flex;
+    gap: 15px;
+}
+
+header nav ul li a {
+    display: block;
+    padding: 5px 12px;
+    background-color: var(--grey-2);
+    color: var(--white);
+    border-radius: var(--radius);
+    text-decoration: none;
+}
+
+header nav ul li:nth-child(1) a {
+    background-color: transparent;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+main form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 20px;
+    width: 460px;
+    max-width: 100%;
+    background-color: var(--white);
+    border-radius: var(--radius-modal);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%),
+                0 8px 16px rgb(0 0 0 / 10%);
+}
+
+main form h2 {
+    margin-bottom: 10px;
+    cursor: default;
+}
+
+main form span {
+    text-align: center;
+    cursor: default;
+}
+
+main form span a {
+    font-weight: 500;
+}
