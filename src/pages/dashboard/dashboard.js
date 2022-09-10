@@ -1,17 +1,17 @@
 import { Api } from "../../scripts/models/api.js"
 import { Render } from "../../scripts/models/render.js"
 
-class AnonymousUser {
-    
+class DashboardLogado {
+    static alterarBotoesHeader() {
+        const btnHeader = document.querySelectorAll("header li .text-2")
+        btnHeader.forEach(btn => btn.classList.toggle("hidden"))
+    }
+
+    static logout() {
+        
+    }
 }
 
-class AdminUser {
-
-}
-
-class NormalUser {
-
-}
 
 function verifyUser() {
     const body = document.querySelector("body")
@@ -19,6 +19,8 @@ function verifyUser() {
     const isAdmin = JSON.parse(localStorage.getItem("@kenzieEmpresas:is_admin"))
 
     if(token) {
+        DashboardLogado.alterarBotoesHeader()
+
         if(isAdmin) {
             // AdminUser
             body.classList.add("body__admin")

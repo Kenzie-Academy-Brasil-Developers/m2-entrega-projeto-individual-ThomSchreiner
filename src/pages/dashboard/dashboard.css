@@ -47,7 +47,6 @@ header nav ul li a {
 }
 
 header nav ul li button {
-    display: none;
     padding: 5px 12px;
     background-color: var(--grey-2);
     color: var(--white);
@@ -182,6 +181,10 @@ main nav .filter__ul li button small {
     margin-left: 8px;
 }
 
+main nav .filter__ul li button:hover small {
+    background-color: #AF42D2;
+}
+
 main nav .filter__ul li .btn__small__active small {
     background-color: #AF42D2;
 }
@@ -232,21 +235,18 @@ main .companies__table > li:first-child div span {
     padding: 0 7% 0 48px;
 }
 
-.body__admin header nav ul li a {
-    display: none;
-}
-
-.body__admin header nav ul li button {
-    display: inline-block;
-}
 
 .body__admin main {
     padding: 80px 0 40px 60px;
 }
 
-.body__admin .companies__table > li {
+.body__admin .companies__table > li:nth-child(n+2) {
     overflow-y: hidden;
     transition: 0.3s;
+}
+
+.body__admin .companies__table > li:nth-child(n+2) div {
+    cursor: pointer;
 }
 
 .body__admin .companies__table .showDepartments {

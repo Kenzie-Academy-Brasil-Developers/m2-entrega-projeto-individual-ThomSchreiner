@@ -78,8 +78,8 @@
 }
 
 .btn__small:hover {
-    background-color: var(--grey-0);
-    border-color: var(--grey-0);
+    background-color: var(--brand-2);
+    border-color: var(--brand-2);
 }
 
 .btn__small__active {
