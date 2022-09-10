@@ -45,4 +45,14 @@ img {
     --input-padding-left: 20px;
 
     --button-heigth: 38px;
+    --button-small-heigth: 28px;
+
+    /* CURSOR */
+    --pointer: pointer;
+    --progress: progress;
+    --default: default;
+}
+
+.loading:root {
+    --default: progress;
 }

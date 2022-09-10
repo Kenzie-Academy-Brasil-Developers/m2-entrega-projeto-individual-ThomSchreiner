@@ -11,11 +11,14 @@ header {
     padding: 0 7%;
 }
 
-header h2 {
+header a {
+    text-decoration: none;
+}
+
+header a h2 {
     color: var(--brand-1);
     font-weight: 500;
     font-size: 22px;
-    cursor: default;
 }
 
 header nav ul {

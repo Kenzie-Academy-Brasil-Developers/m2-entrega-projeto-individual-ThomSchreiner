@@ -1,0 +1,293 @@
+body {
+    background: linear-gradient(180deg, var(--grey-5) 312px, var(--white) 450px);
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-top: 70px;
+    display: flex;
+}
+
+header {
+    height: 70px;
+    background-color: var(--grey-1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 10%),
+                0 8px 16px rgb(0 0 0 / 10%);
+}
+
+header a {
+    text-decoration: none;
+}
+
+header a h2 {
+    color: var(--brand-1);
+    font-weight: 500;
+    font-size: 22px;
+}
+
+header nav ul {
+    display: flex;
+    gap: 15px;
+}
+
+header nav ul li a {
+    display: block;
+    padding: 5px 12px;
+    background-color: var(--grey-2);
+    color: var(--white);
+    border-radius: var(--radius);
+    text-decoration: none;
+}
+
+header nav ul li button {
+    display: none;
+    padding: 5px 12px;
+    background-color: var(--grey-2);
+    color: var(--white);
+    border-radius: var(--radius);
+    border: none;
+    cursor: pointer;
+}
+
+
+aside {
+    display: none;
+    flex: 0 0 180px;
+    padding: 80px 16px 0 16px;
+    box-shadow: 2px 0 4px rgb(0 0 0 / 10%),
+                8px 0 16px rgb(0 0 0 / 10%);
+}
+
+aside ul {
+    position: sticky;
+    top: 100px;
+    left: 0;
+}
+
+aside ul li {
+    margin-bottom: 32px;
+}
+
+aside ul li button {
+    width: 100%;
+}
+
+aside ul li:nth-child(4) {
+    margin-top: 100px;
+}
+
+ul .btn__create__company button {
+    text-align: -webkit-center;
+    padding: 20px 4px;
+    cursor: pointer;
+    border: 3px dashed var(--grey-3);
+    height: 100%;
+}
+
+ul .btn__create__company button span {
+    background-color: var(--brand-1);
+    width: 40px;
+    height: 40px;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+    top: 0;
+    left: 0;
+    margin-bottom: 16px;
+}
+
+ul .btn__create__company button span::before {
+    content: "+";
+    color: var(--white);
+    font-weight: 400;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+ul .btn__create__company button p {
+    color: var(--grey-2);
+}
+
+
+main {
+    padding: 80px 7%;
+    flex: 1 1 auto;
+}
+
+main nav {
+    display: grid;
+}
+
+main nav h1 {
+    margin-bottom: 40px;
+    grid-row: 1;
+}
+
+main nav .input {
+    background-image: url(../../assets/Lupa.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+    width: 40px;
+    height: 40px;
+    grid-row: 1;
+    background-blend-mode: difference;
+    justify-self: end;
+    transition: 0.2s;
+    color: transparent;
+}
+
+main nav .input:focus {
+    width: 300px;
+    background-position-y: center;
+    background-position-x: 8px;
+    padding-left: 32px;
+    background-size: 18px;
+}
+
+main nav span {
+    grid-column: 1/3;
+    margin-bottom: 4px;
+}
+
+main nav .filter__ul {
+    grid-column: 1/3;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+main nav .filter__ul li {
+
+}
+
+main nav .filter__ul li button {
+
+}
+
+main nav .filter__ul li button small {
+    background-color: var(--grey-2);
+    border-radius: var(--radius-small);
+    padding: 0px 5px;
+    margin-left: 8px;
+}
+
+main nav .filter__ul li .btn__small__active small {
+    background-color: #AF42D2;
+}
+
+main .companies__table > li {
+    height: 70px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-bottom: 2px;
+}
+
+main .companies__table > li:nth-child(odd) div {
+    background-color: var(--white);
+}
+
+main .companies__table > li:nth-child(even) div {
+    background-color: var(--grey-5);
+}
+
+main .companies__table > li:first-child div {
+    background-color: var(--grey-2);
+}
+
+main .companies__table > li div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    padding: 0 8px;
+    text-align: center;
+}
+
+main .companies__table > li div span {
+    color: var(--grey-2);
+}
+
+main .companies__table > li:first-child div span {
+    color: var(--white);
+}
+
+/* USER ADMIN */
+.body__admin {
+    padding-right: 7%;
+}
+
+.body__admin header {
+    padding: 0 7% 0 48px;
+}
+
+.body__admin header nav ul li a {
+    display: none;
+}
+
+.body__admin header nav ul li button {
+    display: inline-block;
+}
+
+.body__admin main {
+    padding: 80px 0 40px 60px;
+}
+
+.body__admin .companies__table > li {
+    overflow-y: hidden;
+    transition: 0.3s;
+}
+
+.body__admin .companies__table .showDepartments {
+    height: 276px;
+}
+
+.body__admin .companies__table > li div:first-child {
+    grid-column: 1/3;
+}
+
+.body__admin .companies__table li section {
+    grid-column: 1/5;
+}
+
+.body__admin .departments__list {
+    display: flex;
+    overflow-x: auto;
+}
+
+.body__admin .departments__list li {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-right: 8px;
+    padding: 16px 12px;
+    width: 160px;
+    flex-shrink: 0;
+    align-items: center;
+    border: 2px solid var(--grey-4);
+}
+
+.body__admin .departments__list li span {
+    color: var(--grey-2);
+}
+
+.body__admin aside {
+    display: block;
+}
+
+
+
+.hidden {
+    display: none;
+}

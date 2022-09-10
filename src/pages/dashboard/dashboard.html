@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" class="loading">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles/reset.css">
+    <link rel="stylesheet" href="../../styles/components.css">
+    <link rel="stylesheet" href="./dashboard.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script defer type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script defer type="module" src="./dashboard.js"></script>
+    <title>Schreiner Empresas - Home</title>
+</head>
+<body>
+    <header>
+        <a href="./dashboard.html"><h2>Schreiner</h2></a>
+        <nav>
+            <ul>
+                <li><a class="text-2" href="../../../index.html">Log In</a></li>
+                <li><a class="text-2" href="../signup/signup.html">Sign Up</a></li>
+                <li><button class="text-2">Log Out</button></li>
+            </ul>
+        </nav>
+    </header>
+    <aside>
+        <ul>
+            <li><button class="btn btn__grey1">Setores</button></li>
+            <li><button class="btn">Empresas</button></li>
+            <li><button class="btn btn__grey1">Funcionários</button></li>
+            <li class="btn__create__company">
+                <button>
+                    <span></span>
+                    <p class="text-2">Criar nova empresa</p>
+                </button>
+            </li>
+        </ul>
+    </aside>
+    <main>
+        <nav>
+            <h1 class="title-1">Empresas</h1>
+            <input class="input" type="text">
+            <span>Filtrar por setor</span>
+            <ul class="filter__ul">
+                <li>
+                    <button class="btn__small">Todos<small>5</small></button>
+                </li>
+            </ul>
+        </nav>
+      <ul class="companies__table">
+        <li>
+            <div><span class="text-1">Nome</span></div>
+            <div><span class="text-1">Descrição</span></div>
+            <div><span class="text-1">Setor</span></div>
+            <div><span class="text-1">Hora de abertura</span></div>
+        </li>
+        <!-- <li>
+            <div><span class="text-2">Skina Lanches</span></div>
+            <div><span class="text-2">Podrão de qualidade</span></div>
+            <div><span class="text-2">Alimenticio</span></div>
+            <div><span class="text-2">09:00</span></div>
+        </li> -->
+        <li class="showDepartments">
+            <div><span class="text-2">Nerd lab</span></div>
+            <div><span class="text-2">Podrão de qualidade</span></div>
+            <div><span class="text-2">09:00</span></div>
+            <section>
+                <ul class="departments__list">
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">5 Funcionários</span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">5 Funcionários</span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">5 Funcionários</span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">Funcionários<small>5</small></span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">Funcionários<small>5</small></span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">Funcionários<small>5</small></span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <div><span class="text-2">Nerd lab</span></div>
+            <div><span class="text-2">Podrão de qualidade</span></div>
+            <div><span class="text-2">09:00</span></div>
+            <section>
+                <ul class="departments__list">
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">5 Funcionários</span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">5 Funcionários</span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">5 Funcionários</span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">Funcionários<small>5</small></span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">Funcionários<small>5</small></span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                    <li>
+                        <h3 class="title-2">TI</h3>
+                        <span class="text-2">Departamento de TI</span>
+                        <span class="text-2">Funcionários<small>5</small></span>
+                        <button class="btn__small">Editar</button>
+                    </li>
+                </ul>
+            </section>
+        </li>
+      </ul>
+    </main>
+</body>
+</html>

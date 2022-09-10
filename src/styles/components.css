@@ -64,6 +64,29 @@
     border: 2px solid var(--grey-5);
 }
 
+.btn__small {
+    height: var(--button-small-heigth);
+    background-color: var(--grey-1);
+    border: 2px solid var(--grey-1);
+    color: var(--white);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0 8px;
+    transition: 0.1s linear;
+}
+
+.btn__small:hover {
+    background-color: var(--grey-0);
+    border-color: var(--grey-0);
+}
+
+.btn__small__active {
+    background-color: var(--brand-1);
+    border-color: var(--brand-1);
+}
+
 /* INPUT */
 .input {
     height: var(--input-heigth);

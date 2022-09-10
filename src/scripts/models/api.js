@@ -7,32 +7,29 @@ export class Api {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.token}`
     }
-    static tratarErroFetch(resp) {
+    static async tratarErroFetch(resp) {
         if(resp.ok) {
             return resp.json()
         } else {
-            resp.json().then(response => {
-                Toast.erro(response.error)
-                throw new Error(response.error)
-            })
+            const data = await resp.json()
+            Toast.erro(data.error)
+            throw new Error(data.error)
         }
     }
 
-    static login(body) {
+    static login(body, redirect = false) {
         fetch(`${this.urlBase}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(body)
         })
-        .then(resp => this.tratarErroFetch(resp))
+        .then(async (resp) => this.tratarErroFetch(resp))
         .then(resp => {
-            if(resp) {
-                localStorage.setItem("@kenzieEmpresas:token", resp.token)
-                localStorage.setItem("@kenzieEmpresas:is_admin", resp.is_admin)
-                localStorage.setItem("@kenzieEmpresas:uuid", resp.uuid)
-                window.location.replace("./src/pages/dashboard/dashboard.html")
-                return resp
-            }
+            localStorage.setItem("@kenzieEmpresas:token", resp.token)
+            localStorage.setItem("@kenzieEmpresas:is_admin", resp.is_admin)
+            localStorage.setItem("@kenzieEmpresas:uuid", resp.uuid)
+            window.location.replace(redirect ? "../dashboard/dashboard.html" : "./src/pages/dashboard/dashboard.html")
+            return resp
         })
         .catch(erro => console.log(erro))
     }
@@ -45,11 +42,31 @@ export class Api {
         })
         .then(resp => this.tratarErroFetch(resp))
         .then(resp => {
-            if(resp) {
-                console.log(resp)
-                return resp
-            }
+            this.login(body, true)
+            return resp
         })
         .catch(erro => console.log(erro))
+    }
+
+    static async getAllCompanies() {
+        const companies = await fetch(`${this.urlBase}/companies`, {
+                                    method: "GET",
+                                    headers: this.header
+                                })
+                                .then(resp => this.tratarErroFetch(resp))
+                                .then(resp => resp)
+                                .catch(erro => console.log(erro))
+        return companies
+    }
+
+    static async getDepartmentsOfOneCompany(companyId) {
+        const department = await fetch(`${this.urlBase}/departments/${companyId}`, {
+                                    method: "GET",
+                                    headers: this.header
+                                })
+                                .then(resp => this.tratarErroFetch(resp))
+                                .then(resp => resp)
+                                .catch(erro => console.log(erro))
+        return department
     }
 }
