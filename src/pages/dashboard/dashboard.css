@@ -269,6 +269,7 @@ main .companies__table > li:first-child div span {
 .body__admin .departments__list li {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 12px;
     margin-right: 8px;
     padding: 16px 12px;
@@ -278,8 +279,14 @@ main .companies__table > li:first-child div span {
     border: 2px solid var(--grey-4);
 }
 
+.body__admin .departments__list li h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+
 .body__admin .departments__list li span {
     color: var(--grey-2);
+    text-align: center;
 }
 
 .body__admin aside {

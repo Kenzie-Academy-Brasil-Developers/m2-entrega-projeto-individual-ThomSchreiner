@@ -1,11 +1,12 @@
 import { Api } from "../../scripts/models/api.js"
+import { Modal } from "../../scripts/models/modal.js"
 import { Render } from "../../scripts/models/render.js"
 
 class DashboardLogado {
     static alterarBotoesHeader() {
         const btnHeader = document.querySelectorAll("header li .text-2")
         btnHeader.forEach(btn => btn.classList.toggle("hidden"))
-        
+
         DashboardLogado.logout()
     }
 
@@ -34,7 +35,6 @@ function verifyUser() {
             Render.getAllCompanies("admin")
         } else {
             // NormalUser
-            Render.getAllCompanies()
         }
     } else {
         // AnonymousUser
@@ -43,4 +43,3 @@ function verifyUser() {
 }
 
 verifyUser()
-

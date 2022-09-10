@@ -1,4 +1,5 @@
 import { Api } from "./api.js"
+import { Modal } from "./modal.js"
 
 export class Render {
     static async getAllCompanies(user, filter = "Todos") {
@@ -47,7 +48,7 @@ export class Render {
                 })
 
                 if(user == "admin") {
-                    await this.getDepartmentsOfOneCompany(company.uuid, li)
+                    await this.getDepartmentsOfOneCompany(company.uuid, li, company.name)
                 }
             }
         })
@@ -90,7 +91,7 @@ export class Render {
         }
     }
 
-    static async getDepartmentsOfOneCompany(companyId, liCompany) {
+    static async getDepartmentsOfOneCompany(companyId, liCompany, companyName) {
         const departments = await Api.getDepartmentsOfOneCompany(companyId)
         const section = document.createElement("section")
         const ul = document.createElement("ul")
@@ -112,25 +113,24 @@ export class Render {
         liDefault.appendChild(buttonDefault)
         ul.appendChild(liDefault)
 
+        liDefault.addEventListener("click", () => Modal.createDepartment(companyName, companyId))
+
         departments.forEach(department => {
             const li = document.createElement("li")
             const h3 = document.createElement("h3")
             const spanDescription = document.createElement("span")
-            const spanWorkers = document.createElement("span")
             const button = document.createElement("button")
 
-            h3.classList.add("title-2")
             spanDescription.classList.add("text-2")
-            spanWorkers.classList.add("text-2")
             button.classList.add("btn__small")
 
             h3.innerText = department.name
             spanDescription.innerText = department.description
-            spanWorkers.innerText = ` Funcionários`
-            button.innerText = "Editar"
+            button.innerText = "Exibir"
             
-            li.append(h3, spanDescription, spanWorkers, button)
+            li.append(h3, spanDescription, button)
             ul.appendChild(li)
+
         })
 
         liCompany.addEventListener("click", (event) => {
@@ -141,4 +141,8 @@ export class Render {
             }
         })
     }
+
+    // static createDepartment(companyId) {
+
+    // }
 }

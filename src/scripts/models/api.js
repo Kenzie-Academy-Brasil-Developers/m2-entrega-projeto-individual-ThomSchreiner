@@ -69,4 +69,15 @@ export class Api {
                                 .catch(erro => console.log(erro))
         return department
     }
+
+    static createDepartment(body) {
+        fetch(`${this.urlBase}/departments`, {
+            method: "POST",
+            headers: this.header,
+            body: JSON.stringify(body)
+        })
+        .then(resp => this.tratarErroFetch(resp))
+        .then(resp => resp)
+        .catch(erro => console.log(erro))
+    }
 }
