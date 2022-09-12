@@ -19,6 +19,16 @@ class DashboardLogado {
             window.location.replace("../../../index.html")
         })
     }
+
+    static async gerenciarUsuarioComum() {
+        const company = await Api.getCompanyOfUserActual()
+        const userInfomations = await Api.getCoWorkers()
+        
+        if(company) {
+            userInfomations[0].companies = company
+            Render.createHomePageUser(userInfomations[0], "normalUser")
+        }
+    }
 }
 
 
@@ -26,7 +36,7 @@ function verifyUser() {
     const body = document.querySelector("body")
     const token = localStorage.getItem("@kenzieEmpresas:token")
     const isAdmin = JSON.parse(localStorage.getItem("@kenzieEmpresas:is_admin"))
-
+    
     if(token) {
         DashboardLogado.alterarBotoesHeader()
         if(isAdmin) {
@@ -35,6 +45,7 @@ function verifyUser() {
             Render.getAllCompanies("admin")
         } else {
             // NormalUser
+            DashboardLogado.gerenciarUsuarioComum()
         }
     } else {
         // AnonymousUser

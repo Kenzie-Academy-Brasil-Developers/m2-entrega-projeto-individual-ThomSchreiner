@@ -176,31 +176,40 @@ export class Render {
         const divDepartment = document.createElement("div")
         const h3Department = document.createElement("h3")
         const span = document.createElement("span")
-        const divFooter = document.createElement("div")
         const buttonEdit = document.createElement("button")
         const buttonDelete = document.createElement("button")
 
         h3Department.classList.add("title-2")
         span.classList.add("text-1")
-        buttonEdit.classList.add("btn", "btn__grey1")
-        buttonDelete.classList.add("btn", "btn__red")
 
         h3Department.innerText = department.name
         span.innerText = department.description
-        buttonEdit.innerText = "Editar departamento"
-        buttonDelete.innerText = "Deletar"
-        buttonEdit.setAttribute("data-control-department", "edit")
-        buttonDelete.setAttribute("data-control-department", "delete")
 
-        divFooter.append(buttonEdit, buttonDelete)
-        divDepartment.append(h3Department, span, divFooter)
-        section.appendChild(divDepartment)
         
-        for(let btn of [buttonEdit, buttonDelete]) {
-            btn.addEventListener("click", () => {
-                Modal[`${btn.getAttribute("data-control-department")}Department`](department)
-            })
+        if(user == "admin") {
+            const divFooter = document.createElement("div")
+
+            buttonEdit.classList.add("btn", "btn__grey1")
+            buttonDelete.classList.add("btn", "btn__red")
+            
+            buttonEdit.innerText = "Editar departamento"
+            buttonDelete.innerText = "Deletar"
+            buttonEdit.setAttribute("data-control-department", "edit")
+            buttonDelete.setAttribute("data-control-department", "delete")
+
+            for(let btn of [buttonEdit, buttonDelete]) {
+                btn.addEventListener("click", () => {
+                    Modal[`${btn.getAttribute("data-control-department")}Department`](department)
+                })
+            }
+
+            divFooter.append(buttonEdit, buttonDelete)
+            divDepartment.append(h3Department, span, divFooter)
+        } else {
+            divDepartment.append(h3Department, span)
         }
+
+        section.appendChild(divDepartment)
         
         // Workers
         const divWorker = document.createElement("div")
@@ -225,7 +234,8 @@ export class Render {
 
             this.btnFilterWorker(department, table, user, ul)
         } else {
-            this.btnFilterWorker(department, table, user)
+            // this.btnFilterWorker(department, table, user)
+            this.createWorkersTable(table, department, department.users, user)
         }
     }
 
@@ -289,7 +299,7 @@ export class Render {
         this.createWorkersTable(table, department, workers)
     }
 
-    static createWorkersTable(table, department, workers) {
+    static createWorkersTable(table, department, workers, user) {
         table.innerHTML = ""
 
         const tr1 = document.createElement("tr")
@@ -314,24 +324,30 @@ export class Render {
             td1.classList.add("text-1")
             td2.classList.add("text-1")
             td3.classList.add("text-1")
-            button.classList.add("btn__small")
 
             td1.innerText = worker.username
             td2.innerText = worker.professional_level
             td3.innerText = worker.kind_of_work
-            department.uuid == worker.department_uuid ? button.innerText = "Demitir" : button.innerText = "Contratar"
 
-            td4.appendChild(button)
-            tr.append(td1, td2, td3, td4)
+            if(user !== "normalUser") {
+                button.classList.add("btn__small")
+                department.uuid == worker.department_uuid ? button.innerText = "Demitir" : button.innerText = "Contratar"
+                
+                button.addEventListener("click", () => {
+                    if(department.uuid == worker.department_uuid) {
+                        Modal.dismissWorker(worker)
+                    } else {
+                        Modal.hireWorker(department, worker)
+                    }
+                })
+                
+                td4.appendChild(button)
+                tr.append(td1, td2, td3, td4)
+            } else {
+                tr.append(td1, td2, td3)
+            }
+
             table.appendChild(tr)
-
-            button.addEventListener("click", () => {
-                if(department.uuid == worker.department_uuid) {
-                    Modal.dismissWorker(worker)
-                } else {
-                    Modal.hireWorker(department, worker)
-                }
-            })
         })
 
         if(table.children.length == 1) {
@@ -339,6 +355,11 @@ export class Render {
             th2.innerText = "Nenhum funcionário cadastrado"
             th3.innerText = ""
         }
+    }
+
+    static userWithoutDepartment() {
+        const span = document.querySelector(".main__companies span")
+        span.innerText = "Você não pertence a um departamento."
     }
 }
 

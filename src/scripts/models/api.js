@@ -1,3 +1,4 @@
+import { Render } from "./render.js"
 import { Toast } from "./toast.js"
 
 export class Api {
@@ -146,5 +147,30 @@ export class Api {
         })
         .then(resp => resp)
         .catch(erro => console.log(erro))
+    }
+
+    static async getCompanyOfUserActual() {
+        const company = await fetch(`${this.urlBase}/users/departments`, {
+                method: "GET",
+                headers: this.header
+            })
+            .then(resp => this.tratarErroFetch(resp))
+            .then(resp => resp)
+            .catch(erro => {
+                console.log(erro)
+                Render.userWithoutDepartment()
+            })
+        return company
+    }
+
+    static async getCoWorkers() {
+        const coWorkers = await fetch(`${this.urlBase}/users/departments/coworkers`, {
+                method: "GET",
+                headers: this.header
+            })
+            .then(resp => this.tratarErroFetch(resp))
+            .then(resp => resp)
+            .catch(erro => console.log(erro))
+        return coWorkers
     }
 }
