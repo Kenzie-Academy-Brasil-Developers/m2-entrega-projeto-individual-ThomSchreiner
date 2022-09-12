@@ -50,23 +50,23 @@ export class Api {
 
     static async getAllCompanies() {
         const companies = await fetch(`${this.urlBase}/companies`, {
-                                    method: "GET",
-                                    headers: this.header
-                                })
-                                .then(resp => this.tratarErroFetch(resp))
-                                .then(resp => resp)
-                                .catch(erro => console.log(erro))
+                method: "GET",
+                headers: this.header
+            })
+            .then(resp => this.tratarErroFetch(resp))
+            .then(resp => resp)
+            .catch(erro => console.log(erro))
         return companies
     }
 
     static async getDepartmentsOfOneCompany(companyId) {
         const department = await fetch(`${this.urlBase}/departments/${companyId}`, {
-                                    method: "GET",
-                                    headers: this.header
-                                })
-                                .then(resp => this.tratarErroFetch(resp))
-                                .then(resp => resp)
-                                .catch(erro => console.log(erro))
+                method: "GET",
+                headers: this.header
+            })
+            .then(resp => this.tratarErroFetch(resp))
+            .then(resp => resp)
+            .catch(erro => console.log(erro))
         return department
     }
 
@@ -77,6 +77,37 @@ export class Api {
             body: JSON.stringify(body)
         })
         .then(resp => this.tratarErroFetch(resp))
+        .then(resp => resp)
+        .catch(erro => console.log(erro))
+    }
+
+    static getAllWorkers() {
+        const user = fetch(`${this.urlBase}/users`, {
+                method: "GET",
+                headers: this.header
+            })
+            .then(resp => this.tratarErroFetch(resp))
+            .then(resp => resp)
+            .catch(erro => console.log(erro))
+        return user
+    }
+
+    static editDepartment(body, departmentId) {
+        fetch(`${this.urlBase}/departments/${departmentId}`, {
+            method: "PATCH",
+            headers: this.header,
+            body: JSON.stringify(body)
+        })
+        .then(resp => this.tratarErroFetch(resp))
+        .then(resp => resp)
+        .catch(erro => console.log(erro))
+    }
+
+    static deleteDepartment(departmentId) {
+        fetch(`${this.urlBase}/departments/${departmentId}`, {
+            method: "DELETE",
+            headers: this.header
+        })
         .then(resp => resp)
         .catch(erro => console.log(erro))
     }

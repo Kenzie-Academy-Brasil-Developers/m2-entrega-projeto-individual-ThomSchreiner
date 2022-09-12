@@ -28,3 +28,7 @@
     color: var(--white);
     margin-bottom: 20px;
 }
+
+.modal form p {
+    color: var(--white);
+}

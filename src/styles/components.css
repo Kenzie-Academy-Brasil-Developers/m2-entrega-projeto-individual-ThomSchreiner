@@ -64,6 +64,17 @@
     border: 2px solid var(--grey-5);
 }
 
+.btn__red {
+    background-color: var(--red-1);
+    border: 2px solid var(--red-1);
+    color: var(--white);
+}
+
+.btn__red:hover {
+    background-color: var(--red-2);
+    border: 2px solid var(--red-2);
+}
+
 .btn__small {
     height: var(--button-small-heigth);
     background-color: var(--grey-1);

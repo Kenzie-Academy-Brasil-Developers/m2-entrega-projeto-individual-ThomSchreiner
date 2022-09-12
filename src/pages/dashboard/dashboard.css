@@ -16,7 +16,7 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     width: 100%;
     box-shadow: 0 2px 4px rgb(0 0 0 / 10%),
                 0 8px 16px rgb(0 0 0 / 10%);
@@ -78,8 +78,8 @@ aside ul li button {
     width: 100%;
 }
 
-aside ul li:nth-child(4) {
-    margin-top: 100px;
+aside ul li:nth-child(3) {
+    margin-top: 140px;
 }
 
 ul .btn__create__company button {
@@ -118,21 +118,21 @@ ul .btn__create__company button p {
 }
 
 
-main {
+.main__companies {
     padding: 80px 7%;
     flex: 1 1 auto;
 }
 
-main nav {
+.main__companies nav {
     display: grid;
 }
 
-main nav h1 {
+.main__companies nav h1 {
     margin-bottom: 40px;
     grid-row: 1;
 }
 
-main nav .input {
+.main__companies nav .input {
     background-image: url(../../assets/Lupa.svg);
     background-repeat: no-repeat;
     background-position: center;
@@ -146,7 +146,7 @@ main nav .input {
     color: transparent;
 }
 
-main nav .input:focus {
+.main__companies nav .input:focus {
     width: 300px;
     background-position-y: center;
     background-position-x: 8px;
@@ -154,42 +154,34 @@ main nav .input:focus {
     background-size: 18px;
 }
 
-main nav span {
+.main__companies nav span {
     grid-column: 1/3;
     margin-bottom: 4px;
 }
 
-main nav .filter__ul {
+.main__companies nav .filter__ul {
     grid-column: 1/3;
     display: flex;
     gap: 10px;
     margin-bottom: 32px;
 }
 
-main nav .filter__ul li {
-
-}
-
-main nav .filter__ul li button {
-
-}
-
-main nav .filter__ul li button small {
+.main__companies nav .filter__ul li button small {
     background-color: var(--grey-2);
     border-radius: var(--radius-small);
     padding: 0px 5px;
     margin-left: 8px;
 }
 
-main nav .filter__ul li button:hover small {
+.main__companies nav .filter__ul li button:hover small {
     background-color: #AF42D2;
 }
 
-main nav .filter__ul li .btn__small__active small {
+.main__companies nav .filter__ul li .btn__small__active small {
     background-color: #AF42D2;
 }
 
-main .companies__table > li {
+.main__companies .companies__table > li {
     height: 70px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -197,19 +189,19 @@ main .companies__table > li {
     margin-bottom: 2px;
 }
 
-main .companies__table > li:nth-child(odd) div {
+.main__companies .companies__table > li:nth-child(odd) div {
     background-color: var(--white);
 }
 
-main .companies__table > li:nth-child(even) div {
+.main__companies .companies__table > li:nth-child(even) div {
     background-color: var(--grey-5);
 }
 
-main .companies__table > li:first-child div {
+.main__companies .companies__table > li:first-child div {
     background-color: var(--grey-2);
 }
 
-main .companies__table > li div {
+.main__companies .companies__table > li div {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -218,11 +210,11 @@ main .companies__table > li div {
     text-align: center;
 }
 
-main .companies__table > li div span {
+.main__companies .companies__table > li div span {
     color: var(--grey-2);
 }
 
-main .companies__table > li:first-child div span {
+.main__companies .companies__table > li:first-child div span {
     color: var(--white);
 }
 
@@ -236,7 +228,7 @@ main .companies__table > li:first-child div span {
 }
 
 
-.body__admin main {
+.body__admin .main__companies {
     padding: 80px 0 40px 60px;
 }
 
@@ -291,6 +283,7 @@ main .companies__table > li:first-child div span {
 
 .body__admin aside {
     display: block;
+    z-index: 1;
 }
 
 

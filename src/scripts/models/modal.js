@@ -1,4 +1,5 @@
 import { Api } from "./api.js"
+import { Toast } from "./toast.js"
 
 export class Modal {
     static baseStructure() {
@@ -52,6 +53,73 @@ export class Modal {
             }
 
             Api.createDepartment(body)
+        })
+    }
+
+    static editDepartment(department) {
+        const section = this.baseStructure()
+        const form = document.createElement("form")
+        const h2 = document.createElement("h2")
+        const inputDescription = document.createElement("input")
+        const button = document.createElement("button")
+
+        h2.classList.add("title-2")
+        inputDescription.classList.add("input")
+        button.classList.add("btn")
+        inputDescription.setAttribute("required", true)
+        
+        h2.innerText = `Editar descrição do departamento\n${department.name}`
+        inputDescription.placeholder = "Nova descrição"
+        inputDescription.value = department.description
+        button.innerText = "Salvar alterações"
+
+        form.append(h2, inputDescription, button)
+        section.appendChild(form)
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+            const body = {
+                description: inputDescription.value,
+            }
+            if(inputDescription.value == department.description) {
+                Toast.erro("digite uma descrição diferente da anterior")
+            } else {
+                Api.editDepartment(body, department.uuid)
+            }
+        })
+    }
+
+    static deleteDepartment(department) {
+        const section = this.baseStructure()
+        const form = document.createElement("form")
+        const h2 = document.createElement("h2")
+        const p = document.createElement("p")
+        const inputDescription = document.createElement("input")
+        const button = document.createElement("button")
+
+        h2.classList.add("title-2")
+        p.classList.add("text-1")
+        inputDescription.classList.add("input")
+        button.classList.add("btn")
+        button.classList.add("btn__red")
+        inputDescription.setAttribute("required", true)
+        
+        h2.innerText = `Deletar departamento\n${department.name}`
+        p.innerHTML = `Digite <strong>chô departamento ${department.name}</strong> para confirmar.`
+        inputDescription.placeholder = "Digite aqui"
+        button.innerText = "Deletar departamento"
+
+        form.append(h2, p, inputDescription, button)
+        section.appendChild(form)
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+            
+            if(inputDescription.value == `chô departamento ${department.name}`) {
+                Api.deleteDepartment(department.uuid)
+            } else {
+                Toast.erro("Digite a mensagem corretamente")
+            }
         })
     }
 }
