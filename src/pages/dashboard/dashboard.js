@@ -29,6 +29,13 @@ class DashboardLogado {
             Render.createHomePageUser(userInfomations[0], "normalUser")
         }
     }
+
+    static eventCreateCompany() {
+        const btn = document.querySelector("button[data-create-company]")
+        btn.addEventListener("click", () => {
+            Modal.createCompany()
+        })
+    }
 }
 
 
@@ -43,6 +50,7 @@ function verifyUser() {
             // AdminUser
             body.classList.add("body__admin")
             Render.getAllCompanies("admin")
+            DashboardLogado.eventCreateCompany()
         } else {
             // NormalUser
             DashboardLogado.gerenciarUsuarioComum()

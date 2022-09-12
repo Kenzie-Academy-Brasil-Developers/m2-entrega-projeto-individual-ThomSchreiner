@@ -17,8 +17,65 @@ export class Modal {
         return section
     }
 
-    static createCompany(form) {
+    static async createCompany() {
+        const section = this.baseStructure()
+        const sectors = await Api.getAllSectors()
+        const form = document.createElement("form")
+        const h2 = document.createElement("h2")
+        const inputName = document.createElement("input")
+        const inputOpenHour = document.createElement("input")
+        const select = document.createElement("select")
+        const inputDescription = document.createElement("input")
+        const button = document.createElement("button")
 
+        h2.classList.add("title-2")
+        inputName.classList.add("input")
+        inputOpenHour.classList.add("input")
+        inputDescription.classList.add("input")
+        button.classList.add("btn")
+
+        select.setAttribute("required", true)
+        inputName.setAttribute("required", true)
+        inputOpenHour.setAttribute("required", true)
+        inputDescription.setAttribute("required", true)
+        inputOpenHour.type = "time"
+        
+        h2.innerText = `Criar nova empresa`
+        inputName.placeholder = "Nome da empresa"
+        inputOpenHour.placeholder = "Hora de abertura da empresa"
+        inputDescription.placeholder = "Descrição / Slogan"
+        button.innerText = "Criar empresa"
+        
+        sectors.forEach((element, i) => {
+            if(i == 0) {
+                const optionDefault = document.createElement("option")
+                optionDefault.innerText = "Selecione o setor"
+                optionDefault.value = ""
+                optionDefault.setAttribute("selected", true)
+                optionDefault.setAttribute("disabled", true)
+                optionDefault.setAttribute("hidden", true)
+                select.appendChild(optionDefault)
+            }
+
+            const option = document.createElement("option")
+            option.innerText = element.description
+            option.value = element.uuid
+            select.appendChild(option)
+        })
+        form.append(h2, inputName, inputDescription, select, inputOpenHour, button)
+        section.appendChild(form)
+        
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+            const body = {
+                name: inputName.value,
+                "opening_hours": inputOpenHour.value,
+                description: inputDescription.value,
+                "sector_uuid": select.value
+            }
+
+            Api.createCompany(body)
+        })
     }
 
     static createDepartment(companyName = "Nerds e Negócios", companyId) {
@@ -87,6 +144,7 @@ export class Modal {
                 Api.editDepartment(body, department.uuid)
             }
         })
+
     }
 
     static deleteDepartment(department) {

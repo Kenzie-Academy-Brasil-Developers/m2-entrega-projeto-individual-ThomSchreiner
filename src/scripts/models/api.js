@@ -78,7 +78,10 @@ export class Api {
             body: JSON.stringify(body)
         })
         .then(resp => this.tratarErroFetch(resp))
-        .then(resp => resp)
+        .then(resp => {
+            window.location.reload()
+            return resp
+        })
         .catch(erro => console.log(erro))
     }
 
@@ -100,7 +103,10 @@ export class Api {
             body: JSON.stringify(body)
         })
         .then(resp => this.tratarErroFetch(resp))
-        .then(resp => resp)
+        .then(resp => {
+            window.location.reload()
+            return resp
+        })
         .catch(erro => console.log(erro))
     }
 
@@ -109,7 +115,10 @@ export class Api {
             method: "DELETE",
             headers: this.header
         })
-        .then(resp => resp)
+        .then(resp => {
+            window.location.reload()
+            return resp
+        })
         .catch(erro => console.log(erro))
     }
     
@@ -136,7 +145,10 @@ export class Api {
             body: JSON.stringify(body)
         })
         .then(resp => this.tratarErroFetch(resp))
-        .then(resp => console.log(resp))
+        .then(resp => {
+            window.location.reload()
+            return resp
+        })
         .catch(erro => console.log(erro))
     }
 
@@ -145,7 +157,10 @@ export class Api {
             method: "PATCH",
             headers: this.header
         })
-        .then(resp => resp)
+        .then(resp => {
+            window.location.reload()
+            return resp
+        })
         .catch(erro => console.log(erro))
     }
 
@@ -157,8 +172,8 @@ export class Api {
             .then(resp => this.tratarErroFetch(resp))
             .then(resp => resp)
             .catch(erro => {
-                console.log(erro)
                 Render.userWithoutDepartment()
+                console.log(erro)
             })
         return company
     }
@@ -172,5 +187,30 @@ export class Api {
             .then(resp => resp)
             .catch(erro => console.log(erro))
         return coWorkers
+    }
+
+    static async getAllSectors() {
+        const sectors = await fetch(`${this.urlBase}/sectors`, {
+                method: "GET",
+                headers: this.header
+            })
+            .then(resp => this.tratarErroFetch(resp))
+            .then(resp => resp)
+            .catch(erro => console.log(erro))
+        return sectors
+    }
+
+    static createCompany(body) {
+        fetch(`${this.urlBase}/companies`, {
+            method: "POST",
+            headers: this.header,
+            body: JSON.stringify(body)
+        })
+        .then(resp => this.tratarErroFetch(resp))
+        .then(resp => {
+            window.location.reload()
+            return resp
+        })
+        .catch(erro => console.log(erro))
     }
 }
