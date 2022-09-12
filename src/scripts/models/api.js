@@ -111,4 +111,40 @@ export class Api {
         .then(resp => resp)
         .catch(erro => console.log(erro))
     }
+    
+    static changeKindOfWork(body, userId, hireWorkBody = false) {
+        fetch(`${this.urlBase}/admin/update_user/${userId}`, {
+            method: "PATCH",
+            headers: this.header,
+            body: JSON.stringify(body)
+        })
+        .then(resp => this.tratarErroFetch(resp))
+        .then(resp => {
+            if(hireWorkBody) {
+                this.hireWorker(hireWorkBody)
+            }
+            return resp
+        })
+        .catch(erro => console.log(erro))
+    }
+
+    static hireWorker(body) {
+        fetch(`${this.urlBase}/departments/hire/`, {
+            method: "PATCH",
+            headers: this.header,
+            body: JSON.stringify(body)
+        })
+        .then(resp => this.tratarErroFetch(resp))
+        .then(resp => console.log(resp))
+        .catch(erro => console.log(erro))
+    }
+
+    static dismissWorker(workerId) {
+        fetch(`${this.urlBase}/departments/dismiss/${workerId}`, {
+            method: "PATCH",
+            headers: this.header
+        })
+        .then(resp => resp)
+        .catch(erro => console.log(erro))
+    }
 }

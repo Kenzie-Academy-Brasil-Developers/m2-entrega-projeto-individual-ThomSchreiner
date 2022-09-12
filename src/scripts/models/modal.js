@@ -122,6 +122,89 @@ export class Modal {
             }
         })
     }
+
+    static hireWorker(department, worker) {
+        const section = this.baseStructure()
+        const form = document.createElement("form")
+        const h2 = document.createElement("h2")
+        const p = document.createElement("p")
+        const select = document.createElement("select")
+        const button = document.createElement("button")
+
+        h2.classList.add("title-2")
+        p.classList.add("text-1")
+        button.classList.add("btn")
+        select.setAttribute("required", true)
+        
+        h2.innerText = `Contratar ${worker.username} para\n${department.name}`
+        p.innerText = `Escolha qual será a modalidade de trabalho.`
+        button.innerText = "Contratar"
+
+        for(let element of ["modalidade de trabalho", "home office", "hibrido", "presencial"]) {
+            const option = document.createElement("option")
+            option.innerText = element
+            option.value = element
+
+            if(element == "modalidade de trabalho") {
+                option.setAttribute("selected", true)
+                option.setAttribute("disabled", true)
+                option.setAttribute("hidden", true)
+                option.value = ""
+            }
+            select.appendChild(option)
+        }
+
+        form.append(h2, p, select, button)
+        section.appendChild(form)
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+            const hireWorkBody = {
+                "user_uuid": worker.uuid,
+                "department_uuid": department.uuid
+            }
+
+            const bodyWorkType = {
+                "kind_of_work": select.value
+            }
+
+            Api.changeKindOfWork(bodyWorkType, worker.uuid, hireWorkBody)
+        })
+    }
+
+    static dismissWorker(worker) {
+        const section = this.baseStructure()
+        const form = document.createElement("form")
+        const h2 = document.createElement("h2")
+        const p = document.createElement("p")
+        const inputDescription = document.createElement("input")
+        const button = document.createElement("button")
+
+        h2.classList.add("title-2")
+        p.classList.add("text-1")
+        inputDescription.classList.add("input")
+        button.classList.add("btn")
+        button.classList.add("btn__red")
+        inputDescription.setAttribute("required", true)
+        
+        h2.innerText = `Demitir ${worker.username}`
+        p.innerHTML = `Digite <strong>tchau ${worker.username}</strong> para confirmar.`
+        inputDescription.placeholder = "Digite aqui"
+        button.innerText = "Confirmar"
+
+        form.append(h2, p, inputDescription, button)
+        section.appendChild(form)
+
+        form.addEventListener("submit", (event) => {
+            event.preventDefault()
+            
+            if(inputDescription.value == `tchau ${worker.username}`) {
+                Api.dismissWorker(worker.uuid)
+            } else {
+                Toast.erro("Digite a mensagem corretamente")
+            }
+        })
+    }
 }
 
 

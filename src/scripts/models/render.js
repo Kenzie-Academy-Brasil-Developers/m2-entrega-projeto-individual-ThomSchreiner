@@ -223,14 +223,15 @@ export class Render {
             h3Worker.insertAdjacentElement("afterend", ul)
             h3Worker.insertAdjacentElement("afterend", span)
 
-            this.btnFilterWorker(department.uuid, table, user, ul)
+            this.btnFilterWorker(department, table, user, ul)
         } else {
-            this.btnFilterWorker(department.uuid, table, user)
+            this.btnFilterWorker(department, table, user)
         }
     }
 
-    static async btnFilterWorker(departmentId, table, user, ul, departmentFilter = "true") {
+    static async btnFilterWorker(department, table, user, ul, departmentFilter = "true") {
         let workers = await Api.getAllWorkers()
+        const departmentId = department.uuid
         const filter = { "Ativos neste departamento": 0 , Desempregados: 0 }
        
         workers = workers.filter(worker => {
@@ -279,16 +280,16 @@ export class Render {
                 button.addEventListener("click", (event) => {
                     if(event.target.closest("button") !== null) {
                         const btnFilter = event.target.closest("button").getAttribute("data-filter-worker")
-                        Render.btnFilterWorker(departmentId, table, user, ul, btnFilter)
+                        Render.btnFilterWorker(department, table, user, ul, btnFilter)
                     }
                 })
             }
         }
 
-        this.createWorkersTable(table, departmentId, workers)
+        this.createWorkersTable(table, department, workers)
     }
 
-    static createWorkersTable(table, departmentId, workers) {
+    static createWorkersTable(table, department, workers) {
         table.innerHTML = ""
 
         const tr1 = document.createElement("tr")
@@ -318,11 +319,19 @@ export class Render {
             td1.innerText = worker.username
             td2.innerText = worker.professional_level
             td3.innerText = worker.kind_of_work
-            departmentId == worker.uuid ? button.innerText = "Demitir" : button.innerText = "Contratar"
+            department.uuid == worker.department_uuid ? button.innerText = "Demitir" : button.innerText = "Contratar"
 
             td4.appendChild(button)
             tr.append(td1, td2, td3, td4)
             table.appendChild(tr)
+
+            button.addEventListener("click", () => {
+                if(department.uuid == worker.department_uuid) {
+                    Modal.dismissWorker(worker)
+                } else {
+                    Modal.hireWorker(department, worker)
+                }
+            })
         })
 
         if(table.children.length == 1) {
