@@ -51,6 +51,7 @@
 .page section div > button {
     width: max-content;
     align-self: center;
+    margin-bottom: 8px;
 }
 
 .page section div > button:nth-child(2) {
@@ -62,6 +63,7 @@
     background-color: var(--grey-4);
     border-radius: 0 var(--radius) var(--radius) 0;
     gap: 0px;
+    max-height: 500px;
 }
 
 .page section .div__worker h3 {
@@ -77,6 +79,7 @@
 
 .page section .div__worker ul {
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
     margin-bottom: 20px;
 }
@@ -101,6 +104,11 @@
     background-color: #AF42D2;
 }
 
+.page section .div__worker > div {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 .page table tr {
     line-height: 34px;
 }

@@ -214,13 +214,15 @@ export class Render {
         // Workers
         const divWorker = document.createElement("div")
         const h3Worker = document.createElement("h3")
+        const divTable = document.createElement("div")
         const table = document.createElement("table")
        
         divWorker.classList.add("div__worker")
         h3Worker.classList.add("title-2")
         h3Worker.innerText = "Funcionários"
 
-        divWorker.append(h3Worker, table)
+        divTable.appendChild(table)
+        divWorker.append(h3Worker, divTable)
         section.appendChild(divWorker)
 
         if(user == "admin") {
