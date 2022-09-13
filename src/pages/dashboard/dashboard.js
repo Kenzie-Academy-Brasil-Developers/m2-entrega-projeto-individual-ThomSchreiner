@@ -1,6 +1,7 @@
 import { Api } from "../../scripts/models/api.js"
 import { Modal } from "../../scripts/models/modal.js"
 import { Render } from "../../scripts/models/render.js"
+import { Toast } from "../../scripts/models/toast.js"
 
 class DashboardLogado {
     static alterarBotoesHeader() {
@@ -36,6 +37,16 @@ class DashboardLogado {
             Modal.createCompany()
         })
     }
+
+    static veryfyToast() {
+        const message = localStorage.getItem("@kenzieEmpresas:toast")
+        if(message) {
+            setTimeout(() => {
+                Toast.success(message)
+                localStorage.removeItem("@kenzieEmpresas:toast")
+            }, 500)
+        }
+    }
 }
 
 
@@ -46,6 +57,7 @@ function verifyUser() {
     
     if(token) {
         DashboardLogado.alterarBotoesHeader()
+        DashboardLogado.veryfyToast()
         if(isAdmin) {
             // AdminUser
             body.classList.add("body__admin")

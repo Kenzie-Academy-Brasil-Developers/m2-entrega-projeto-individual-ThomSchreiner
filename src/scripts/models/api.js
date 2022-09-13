@@ -79,6 +79,7 @@ export class Api {
         })
         .then(resp => this.tratarErroFetch(resp))
         .then(resp => {
+            localStorage.setItem("@kenzieEmpresas:toast", "Departamento criado com sucesso")
             window.location.reload()
             return resp
         })
@@ -104,6 +105,7 @@ export class Api {
         })
         .then(resp => this.tratarErroFetch(resp))
         .then(resp => {
+            localStorage.setItem("@kenzieEmpresas:toast", "Departamento editado com sucesso")
             window.location.reload()
             return resp
         })
@@ -116,6 +118,7 @@ export class Api {
             headers: this.header
         })
         .then(resp => {
+            localStorage.setItem("@kenzieEmpresas:toast", "Departamento deletado com sucesso")
             window.location.reload()
             return resp
         })
@@ -146,6 +149,7 @@ export class Api {
         })
         .then(resp => this.tratarErroFetch(resp))
         .then(resp => {
+            localStorage.setItem("@kenzieEmpresas:toast", "Funcionário contratado com sucesso")
             window.location.reload()
             return resp
         })
@@ -158,6 +162,7 @@ export class Api {
             headers: this.header
         })
         .then(resp => {
+            localStorage.setItem("@kenzieEmpresas:toast", "Funcionário demitido com sucesso")
             window.location.reload()
             return resp
         })
@@ -208,6 +213,7 @@ export class Api {
         })
         .then(resp => this.tratarErroFetch(resp))
         .then(resp => {
+            localStorage.setItem("@kenzieEmpresas:toast", "Empresa criada com sucesso")
             window.location.reload()
             return resp
         })

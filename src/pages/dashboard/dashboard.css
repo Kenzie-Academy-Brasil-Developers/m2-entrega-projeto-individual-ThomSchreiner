@@ -152,6 +152,7 @@ ul .btn__create__company button p {
     background-position-x: 8px;
     padding-left: 32px;
     background-size: 18px;
+    color: var(--grey-1);
 }
 
 .main__companies nav span {
