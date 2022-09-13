@@ -109,6 +109,10 @@
     overflow-y: auto;
     overflow-x: hidden;
 }
+.page table {
+    width: 100%;
+}
+
 .page table tr {
     line-height: 34px;
 }
