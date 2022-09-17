@@ -47,10 +47,30 @@ class DashboardLogado {
             }, 500)
         }
     }
+
+    static async searchBar(user) {
+        const input = document.querySelector("input[data-search-bar]")
+        const companies = await Api.getAllCompanies()
+
+        input.addEventListener("keypress", async (event) => {
+            if(event.key == " " || event.key == "Enter") {
+                const inputTratado = input.value.trim().toLowerCase()
+
+                let companiesFiltred = companies.filter((company) => {
+                    const companyTratada = company.name.trim().toLowerCase()
+                    if(companyTratada.includes(inputTratado)) {
+                        return company
+                    }
+                })
+
+                await Render.getAllCompanies(user, "Todos", companiesFiltred)
+            }
+        })
+    }
 }
 
 
-function verifyUser() {
+async function verifyUser() {
     const body = document.querySelector("body")
     const token = localStorage.getItem("@kenzieEmpresas:token")
     const isAdmin = JSON.parse(localStorage.getItem("@kenzieEmpresas:is_admin"))
@@ -63,6 +83,7 @@ function verifyUser() {
             body.classList.add("body__admin")
             Render.getAllCompanies("admin")
             DashboardLogado.eventCreateCompany()
+            await DashboardLogado.searchBar("admin")
         } else {
             // NormalUser
             DashboardLogado.gerenciarUsuarioComum()

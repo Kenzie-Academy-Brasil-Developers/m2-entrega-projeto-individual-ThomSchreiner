@@ -2,11 +2,14 @@ import { Api } from "./api.js"
 import { Modal } from "./modal.js"
 
 export class Render {
-    static async getAllCompanies(user, filter = "Todos") {
+    static async getAllCompanies(user, filter = "Todos", companies) {
         const ul = document.querySelector(".companies__table")
+        const allCompanies = await Api.getAllCompanies()
+        if(!companies) {
+            companies = await Api.getAllCompanies()
+        }
         ul.innerHTML = ""
-        const companies = await Api.getAllCompanies()
-        this.btnFilterSector(companies, user, filter)
+        this.btnFilterSector(allCompanies, user, filter)
 
         const liHeader = document.createElement("li")
         const guiaHeader = ["Nome", "Descrição", "Setor", "Hora de abertura"]
@@ -364,5 +367,3 @@ export class Render {
         span.innerText = "Você não pertence a um departamento."
     }
 }
-
-

@@ -32,6 +32,7 @@ export class Modal {
         inputName.classList.add("input")
         inputOpenHour.classList.add("input")
         inputDescription.classList.add("input")
+        select.classList.add("input")
         button.classList.add("btn")
 
         select.setAttribute("required", true)
@@ -192,6 +193,7 @@ export class Modal {
         h2.classList.add("title-2")
         p.classList.add("text-1")
         button.classList.add("btn")
+        select.classList.add("input")
         select.setAttribute("required", true)
         
         h2.innerText = `Contratar ${worker.username} para\n${department.name}`
@@ -264,19 +266,3 @@ export class Modal {
         })
     }
 }
-
-
-
-
-// <section class="modal">
-//     <form>
-//     <h2>Criar nova empresa</h2>
-//         <input type="text" placeholder="Nome">
-//         <input type="text" placeholder="Hora de abertura">
-//         <input type="text" placeholder="Descrição / Slogan da empresa">
-//         <select>
-//             <Option></Option>
-//         </select>
-//         <input type="text" placeholder="Setor">
-//     </form>
-// </section>
